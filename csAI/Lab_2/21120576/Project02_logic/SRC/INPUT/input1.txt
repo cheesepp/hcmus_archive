@@ -1,0 +1,6 @@
+P OR R OR Q
+4
+P OR -R
+R OR Q
+-Q OR P
+-P OR -R OR Q

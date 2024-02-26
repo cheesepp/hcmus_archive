@@ -1,0 +1,19 @@
+3
+S OR T
+Q OR -S OR -U
+Q OR -T OR -U
+5
+Q OR S OR -T
+Q OR -U
+Q OR T OR -U
+Q OR S OR -U
+S OR -T OR -U
+6
+Q OR S
+Q OR S OR T
+S OR -T
+S OR -U
+S OR T OR -U
+-Q OR S OR -U
+0
+NO
