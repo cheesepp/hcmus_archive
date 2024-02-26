@@ -1,0 +1,7 @@
+Tuan 587 13/10/2003 1 2 2 TB: 1.75 Xep Loai: Yeu
+Nguyen 581 6/7/2001 9 8 8 TB: 8.25 Xep Loai: Gioi
+Le 588 8/9/2002 3 1 1 TB: 1.5 Xep Loai: Yeu
+Quoc 582 3/4/2001 9 9 10 TB: 9.5 Xep Loai: Xuat Sac
+Duong 585 3/4/2003 7 6 8 TB: 7.25 Xep Loai: Kha
+Truong 583 13/8/2003 9 8 9 TB: 8.75 Xep Loai: Gioi
+Tran 589 13/3/2003 2 3 2 TB: 2.25 Xep Loai: Yeu

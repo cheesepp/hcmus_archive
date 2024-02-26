@@ -1,0 +1,6 @@
+D14 Thu Mon 90
+D18 Tien Ve 99
+D11 Tien Dao 100
+C12 Tien Dao 9 10 20
+C5 Tien Ve 8 8 30
+C10 Thu Mon 7 7 50

@@ -1,0 +1,4 @@
+Ho ten: Tuan||Ma so: 21120589||Ngay sinh : 3/2/2002||Diem trung binh: 7
+Ho ten: Tri||Ma so: 21120587||Ngay sinh : 5/1/2002||Diem trung binh: 7.875
+Ho ten: Thanh||Ma so: 21120588||Ngay sinh : 14/10/2002||Diem trung binh: 8.75
+Ho ten: Hung||Ma so: 21120600||Ngay sinh : 17/11/2002||Diem trung binh: 7.875
