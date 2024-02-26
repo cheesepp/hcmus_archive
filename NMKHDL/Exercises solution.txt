@@ -1,0 +1,1075 @@
+{
+  nbformat 4,
+  nbformat_minor 0,
+  metadata {
+    colab {
+      provenance []
+    },
+    kernelspec {
+      name python3,
+      display_name Python 3
+    },
+    language_info {
+      name python
+    }
+  },
+  cells [
+    {
+      cell_type markdown,
+      source [
+        h1Bài 1h1n,
+        h3a) Trung bình và trung vị của dữ liệuh3
+      ],
+      metadata {
+        id 9Fv9H3uXoHEr
+      }
+    },
+    {
+      cell_type code,
+      source [
+        import numpy as npn,
+        n,
+        l = np.array([13, 15, 16, 16, 19, 20, 20, 21, 22, 22, 25, 25, 25, 25, 30, 33, 33, 35, 35, 35, 35, 36, 40, 45, 46, 52, 70])n,
+        print('Mean', np.mean(l))n,
+        print('Median', np.median(l))
+      ],
+      metadata {
+        colab {
+          base_uri httpslocalhost8080
+        },
+        id sA2ZXfKToGlI,
+        outputId 46e27ca2-0564-4a43-dbdd-a9803c42cc44
+      },
+      execution_count 1,
+      outputs [
+        {
+          output_type stream,
+          name stdout,
+          text [
+            Mean 29.962962962962962n,
+            Median 25.0n
+          ]
+        }
+      ]
+    },
+    {
+      cell_type markdown,
+      source [
+        h3b) Mode của dữ liệuh3
+      ],
+      metadata {
+        id RW8TnL4rpDTt
+      }
+    },
+    {
+      cell_type code,
+      source [
+        from scipy import statsn,
+        n,
+        print('Mode', stats.mode(l))
+      ],
+      metadata {
+        colab {
+          base_uri httpslocalhost8080
+        },
+        id olB1B9IXpDDG,
+        outputId 7cf91f03-2b4d-4c28-808e-73913aef6951
+      },
+      execution_count 2,
+      outputs [
+        {
+          output_type stream,
+          name stdout,
+          text [
+            Mode ModeResult(mode=array([25]), count=array([4]))n
+          ]
+        }
+      ]
+    },
+    {
+      cell_type markdown,
+      source [
+        h3c) Midrange của dữ liệuh3
+      ],
+      metadata {
+        id PNm5nhdFqWw6
+      }
+    },
+    {
+      cell_type code,
+      source [
+        print('Midrange', (np.min(l)+np.max(l))2)
+      ],
+      metadata {
+        colab {
+          base_uri httpslocalhost8080
+        },
+        id 633yN6XsqEZx,
+        outputId df99faa5-87b6-46a5-d7cd-7e0e55fd5148
+      },
+      execution_count 3,
+      outputs [
+        {
+          output_type stream,
+          name stdout,
+          text [
+            Midrange 41.5n
+          ]
+        }
+      ]
+    },
+    {
+      cell_type markdown,
+      source [
+        h3d) Tứ phân vị thứ nhất (Q1) và tứ phân vị thứ 3 (Q3) của dữ liệuh3
+      ],
+      metadata {
+        id lHB1GjsSsGd0
+      }
+    },
+    {
+      cell_type code,
+      source [
+        print(Q1, np.quantile(l, 0.25))n,
+        print(Q2, np.quantile(l, 0.5))n,
+        print(Q3, np.quantile(l, 0.75))
+      ],
+      metadata {
+        colab {
+          base_uri httpslocalhost8080
+        },
+        id 5KzPSpaTryeu,
+        outputId 72333d4a-27ad-4bba-96fd-d2f7fbe30f77
+      },
+      execution_count 4,
+      outputs [
+        {
+          output_type stream,
+          name stdout,
+          text [
+            Q1 20.5n,
+            Q2 25.0n,
+            Q3 35.0n
+          ]
+        }
+      ]
+    },
+    {
+      cell_type markdown,
+      source [
+        h3e) Trực quan hóa bằng boxploth3
+      ],
+      metadata {
+        id EUGNEMhssNUV
+      }
+    },
+    {
+      cell_type code,
+      source [
+        import matplotlib.pyplot as pltn,
+         n,
+        fig = plt.figure(figsize =(6, 4))n,
+        plt.boxplot(l)n,
+        plt.show()
+      ],
+      metadata {
+        colab {
+          base_uri httpslocalhost8080,
+          height 265
+        },
+        id kRJ952jmsNA_,
+        outputId 48f364d8-be96-45a9-d79a-d277a8acc103
+      },
+      execution_count 5,
+      outputs [
+        {
+          output_type display_data,
+          data {
+            textplain [
+              Figure size 432x288 with 1 Axes
+            ],
+            imagepng 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n
+          },
+          metadata {
+            needs_background light
+          }
+        }
+      ]
+    },
+    {
+      cell_type markdown,
+      source [
+        h1Bài 2h1n,
+        h3a) Xác định các tham số thống kê về tính trung tâm và tính phân bốh3
+      ],
+      metadata {
+        id euLfZbJHsy4S
+      }
+    },
+    {
+      cell_type code,
+      source [
+        l1 = np.array([1, 1, 5, 5, 5, 5, 5, 8, 8, 10, 10, 10, 10, 12, 14, 14, 14, 15, 15, 15, 15, 15, 15, 18, 18, 18, 18,n,
+        18, 18, 18, 18, 20, 20, 20, 20, 20, 20, 20, 21, 21, 21, 21, 25, 25, 25, 25, 25, 28, 28, 30, 30, 30])n,
+        print('Mean', np.mean(l1))n,
+        print('Median', np.median(l1))n,
+        print('Mode', stats.mode(l1))n,
+        print('Covariance', np.cov(l1))n,
+        print('Variance', np.var(l1))n,
+        print('Standard Deviation', np.std(l1))n,
+        print('Histogram', np.histogram(l1)[0])
+      ],
+      metadata {
+        colab {
+          base_uri httpslocalhost8080
+        },
+        id ucjbgObjsykL,
+        outputId 84665960-2446-4bb3-a030-da75d1d1c993
+      },
+      execution_count 6,
+      outputs [
+        {
+          output_type stream,
+          name stdout,
+          text [
+            Mean 16.653846153846153n,
+            Median 18.0n,
+            Mode ModeResult(mode=array([18]), count=array([8]))n,
+            Covariance 56.15233785822021n,
+            Variance 55.07248520710057n,
+            Standard Deviation 7.42108382967748n,
+            Histogram [ 2  5  2  5  9  8 11  0  5  5]n
+          ]
+        }
+      ]
+    },
+    {
+      cell_type markdown,
+      source [
+        h3b) Vẽ lược đồ histogramh3
+      ],
+      metadata {
+        id VBJZsUpexqfL
+      }
+    },
+    {
+      cell_type code,
+      source [
+        plt.hist(l1)n,
+        plt.show()
+      ],
+      metadata {
+        colab {
+          base_uri httpslocalhost8080,
+          height 265
+        },
+        id lHGj6pb8xqJq,
+        outputId d018c3d0-72cb-476a-c95f-772bbc5f1735
+      },
+      execution_count 7,
+      outputs [
+        {
+          output_type display_data,
+          data {
+            textplain [
+              Figure size 432x288 with 1 Axes
+            ],
+            imagepng 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
+          },
+          metadata {
+            needs_background light
+          }
+        }
+      ]
+    },
+    {
+      cell_type markdown,
+      source [
+        h1Bài 3h1n,
+        h3a) Chia dữ liệu thành 3 giỏ theo hai phương pháp độ rộng và độ sâuh3
+      ],
+      metadata {
+        id vVzP6MeayggZ
+      }
+    },
+    {
+      cell_type code,
+      source [
+        import mathn,
+        n,
+        l2 = np.array([13, 15, 16, 16, 19, 20, 20, 21, 22, 22, 25, 25, 25, 25, 30, 33, 33, 35, 35, 35, 35, 36, 40, 45, 46, 52, 70])n,
+        def equal_width(arr, num_bin)n,
+            width = int(math.ceil((np.max(arr) - np.min(arr))  num_bin))n,
+            cnt = 0n,
+            nested_list = []n,
+            for i in range(len(arr))n,
+              sub_list = []n,
+              for j in range(arr[0] + cnt  width, arr[0] + (cnt + 1)  width - 1 + 1) n,
+                  sub_list.append(j)n,
+              nested_list.append(sub_list)n,
+              cnt += 1n,
+              if cnt == num_binn,
+                breakn,
+            res = []n,
+            for i in range(num_bin)n,
+                tmp = []n,
+                for j in range(len(arr))n,
+                    if arr[j] in nested_list[i]n,
+                      tmp.append(arr[j])n,
+                res.append(tmp)n,
+            return resn,
+        n,
+        print('Equal width', equal_width(l2, 3))
+      ],
+      metadata {
+        colab {
+          base_uri httpslocalhost8080
+        },
+        id uK7pcEqSygQp,
+        outputId f836fac4-5bfd-4428-9461-ea6c8210fe7b
+      },
+      execution_count 29,
+      outputs [
+        {
+          output_type stream,
+          name stdout,
+          text [
+            Equal width [[13, 15, 16, 16, 19, 20, 20, 21, 22, 22, 25, 25, 25, 25, 30], [33, 33, 35, 35, 35, 35, 36, 40, 45, 46], [52]]n
+          ]
+        }
+      ]
+    },
+    {
+      cell_type code,
+      source [
+        def equal_depth(arr, num_bin)n,
+            depth = len(arr)num_binn,
+            res = []n,
+            for i in range(num_bin)n,
+                tmp = []n,
+                for j in range(i  depth, (i + 1)  depth)n,
+                  tmp.append(arr[j])n,
+                res.append(tmp)n,
+            return resn,
+        n,
+        print('Equal depth', equal_depth(l2, 3))
+      ],
+      metadata {
+        colab {
+          base_uri httpslocalhost8080
+        },
+        id SxjeIeHSVCHS,
+        outputId bd888ced-91f3-4db5-e6ed-40c521ce7dfa
+      },
+      execution_count 32,
+      outputs [
+        {
+          output_type stream,
+          name stdout,
+          text [
+            Equal depth [[13, 15, 16, 16, 19, 20, 20, 21, 22], [22, 25, 25, 25, 25, 30, 33, 33, 35], [35, 35, 35, 36, 40, 45, 46, 52, 70]]n
+          ]
+        }
+      ]
+    },
+    {
+      cell_type markdown,
+      source [
+        h3b) Áp dụng làm trơn bằng giá trị trung bình cho trường hợp chia giỏ theo độ sâuh3
+      ],
+      metadata {
+        id arsVx8IlbJBs
+      }
+    },
+    {
+      cell_type code,
+      source [
+        def equal_depth_mean(arr, num_bin)n,
+            depth = len(arr)num_binn,
+            res = []n,
+            for i in range(num_bin)n,
+                tmp = []n,
+                for j in range(i  depth, (i + 1)  depth)n,
+                  tmp.append(arr[j])n,
+                mean_list = int(np.mean(tmp))n,
+                for k in range(len(tmp)) n,
+                  tmp[k] = mean_listn,
+                res.append(tmp)n,
+            return resn,
+        n,
+        print('Equal depth with mean', equal_depth_mean(l2, 3))
+      ],
+      metadata {
+        colab {
+          base_uri httpslocalhost8080
+        },
+        id iLypBcjyaY9C,
+        outputId 7c275e4d-0f48-463a-9008-48eaab3c253c
+      },
+      execution_count 34,
+      outputs [
+        {
+          output_type stream,
+          name stdout,
+          text [
+            Equal depth with mean [[18, 18, 18, 18, 18, 18, 18, 18, 18], [28, 28, 28, 28, 28, 28, 28, 28, 28], [43, 43, 43, 43, 43, 43, 43, 43, 43]]n
+          ]
+        }
+      ]
+    },
+    {
+      cell_type markdown,
+      source [
+        h3c) Phát hiện outlier bằng khoảng cách Euclideh3
+      ],
+      metadata {
+        id WCEZW7_IbVUy
+      }
+    },
+    {
+      cell_type code,
+      source [
+        from scipy.stats import chi2n,
+        from scipy.spatial.distance import euclideann,
+        n,
+        df = np.array([[i, 1] for i in l2])n,
+        df_norm = (df - np.min(df))  (np.max(df) - np.min(df))n,
+        centerpoint = np.mean(df_norm, axis=0)n,
+        n,
+        distances = []n,
+        for i, val in enumerate(df_norm)n,
+            p1 = valn,
+            p2 = centerpointn,
+            dist = euclidean(p1, p2)n,
+            distances.append(dist)n,
+        distances = np.array(distances)n,
+        cutoff = chi2.ppf(0.15, df_norm.shape[1])n,
+        print('List outliers by euclidean distance-based method', [ele[0] for ele in df[distances  cutoff, ]])
+      ],
+      metadata {
+        colab {
+          base_uri httpslocalhost8080
+        },
+        id DRWvDbrgd3Ce,
+        outputId cc947cd3-c59f-4b76-eee5-293e4b302714
+      },
+      execution_count 77,
+      outputs [
+        {
+          output_type stream,
+          name stdout,
+          text [
+            List outliers by euclidean distance-based method [70]n
+          ]
+        }
+      ]
+    },
+    {
+      cell_type code,
+      source [
+        def IQR(data)n,
+            q1, q3 = np.percentile(sorted(data), [25, 75])n,
+            iqr = q3 - q1n,
+            lower_bound = q1 - (1.5  iqr)n,
+            upper_bound = q3 + (1.5  iqr)n,
+            list_outliers = [x for x in data if x = lower_bound or x = upper_bound]n,
+            return list_outliersn,
+        n,
+        print('List outliers by IQR method', IQR(l2))
+      ],
+      metadata {
+        id IXNdzBmTbVF3,
+        colab {
+          base_uri httpslocalhost8080
+        },
+        outputId 09dbf857-672a-4f85-8c89-92df50919d92
+      },
+      execution_count 76,
+      outputs [
+        {
+          output_type stream,
+          name stdout,
+          text [
+            List outliers by IQR method [70]n
+          ]
+        }
+      ]
+    },
+    {
+      cell_type code,
+      source [
+        def zscore_outlier(data)n,
+            outlier = []n,
+            mean = np.mean(data)n,
+            std = np.std(data)n,
+            for i in datan,
+              zscore = (i - mean)  stdn,
+              if zscore  3n,
+                outlier.append(i)n,
+            return outliern,
+        print('List outliers by zscore method', zscore_outlier(l2))
+      ],
+      metadata {
+        colab {
+          base_uri httpslocalhost8080
+        },
+        id 9SiHUXWUgBWm,
+        outputId 62dbf7f2-00bb-4a98-fe57-7e1614b62a2f
+      },
+      execution_count 75,
+      outputs [
+        {
+          output_type stream,
+          name stdout,
+          text [
+            List outliers by zscore method [70]n
+          ]
+        }
+      ]
+    },
+    {
+      cell_type markdown,
+      source [
+        h1Bài 4h1n,
+        h3a) Tính giá trị trung bình, trung vị và độ lệch chuẩn của tuổi và % chất béoh3
+      ],
+      metadata {
+        id CFFYVG1PiSde
+      }
+    },
+    {
+      cell_type code,
+      source [
+        age_list = np.array([23, 23, 27, 27, 39, 41, 47, 49, 50, 52, 54, 54, 56, 57, 58, 58, 60, 61])n,
+        fat_list = np.array([9.5, 26.5, 7.8, 17.8, 31.4, 25.9, 27.4, 27.2, 31.2, 34.6, 42.5, 28.8, 33.4, 30.2, 34.1, 32.9, 41.2, 35.7])n,
+        print('Mean of age', np.mean(age_list))n,
+        print('Mean of %fat', np.mean(fat_list))n,
+        print('Median of age', np.median(age_list))n,
+        print('Median of %fat', np.median(fat_list))n,
+        print('Standard deviation of age', np.std(age_list))n,
+        print('Standard deviation of %fat', np.std(fat_list))
+      ],
+      metadata {
+        colab {
+          base_uri httpslocalhost8080
+        },
+        id PyTZmgSBiSIn,
+        outputId 465cc717-2ac4-490e-925f-a4a6ec4b935a
+      },
+      execution_count 86,
+      outputs [
+        {
+          output_type stream,
+          name stdout,
+          text [
+            Mean of age 46.44444444444444n,
+            Mean of %fat 28.783333333333335n,
+            Median of age 51.0n,
+            Median of %fat 30.7n,
+            Standard deviation of age 12.846193652519204n,
+            Standard deviation of %fat 8.993655170915401n
+          ]
+        }
+      ]
+    },
+    {
+      cell_type markdown,
+      source [
+        h3b) Trực quan bằng boxplot cho tuổi và % chất béoh3
+      ],
+      metadata {
+        id VKEas8qWmu6q
+      }
+    },
+    {
+      cell_type code,
+      source [
+        fig, ax = plt.subplots()n,
+        ax.boxplot([age_list, fat_list])n,
+        plt.show()
+      ],
+      metadata {
+        colab {
+          base_uri httpslocalhost8080,
+          height 265
+        },
+        id 31OLBABimuml,
+        outputId f2216abb-68d1-4336-efdb-1006ba1e60ec
+      },
+      execution_count 93,
+      outputs [
+        {
+          output_type display_data,
+          data {
+            textplain [
+              Figure size 432x288 with 1 Axes
+            ],
+            imagepng iVBORw0KGgoAAAANSUhEUgAAAXAAAAD4CAYAAAD1jb0+AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+AAAADh0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uMy4yLjIsIGh0dHA6Ly9tYXRwbG90bGliLm9yZy+WH4yJAAAMklEQVR4nO3dcYjf9X3H8edrMepoq+bmLQStizCxKYHWcciKoaCuY3Zj5o8iy0oJ4zDjGDpYHPLH1WY0P3TrvhHR2i63cBdFdsSMaRM0islWFwv6jb1CjqpLBLNdUbUgRrde3kGxsvl9zvLrffL55fmA437f7+7u974Hjy5Xvf7eXqkKS1J5fGYAkqSVMeCS1CgDLkmNMuCS1CgDLkmNumg13+zKK6+sjRs3ruZbSlLzDh069MuqGl+4flUDvnHjRmZnZ1fzLSWpeUleWmy9h1AkqVEGXJIaZcAlqVEGXJIaZcAlqVEGXJIaZcAlqVEGXJIataoX8mj5kqzodd7nXRp9Pe2BJ7kiycNJfp5kLslnkowleSzJ8933dYMe9kJUVWf8OtvzkkZfr4dQvgn8sKo+AXwKmAPuBg5U1XXAgW5ZkrRKlgx4ksuBzwJ7AKrq3ap6HbgdmOo2mwK2DmpISdLpetkDvxaYB4xyVNJvp3kI8D6qjrSbfMKsH6xFyfZkWQ2yez8HxppYk9RTwi4DfAb5VVTcA8uCwyV14qDrogdeq2p3VU1U1cT4+Gl3Q5QkrVAvAT8MHK6qJ7rlhzkR9FeTbADovh8dzIiSpMUsGfCqegX47yTXd6tuBZ4DHgG2d+u2A3sHMqEkaVG9nge+E3ggycXAi8CfcSL+DyWZBF4C7hjMiJKkxfQU8Kp6GphY5Klb+zuOJKlXXkovSY0y4JLUKAMuSY0y4JLUKAMuSY0y4JLUKAN+nhgbGyPJsr6AZW0NjY25N9SUj5gQ7niWPHjg38Pt4rXAISecn98AlqVEGXJIaZcAlqVEGXJIaZcAlqVEGXJIaZcAlqVEGXJIaZcAlqVEGXJIaZcAlqVEGXJIaZcAlqVEGXJIaZcAlqVEGXJIaZcAlqVEGXJIaZcAlqVF+JuZ5or56Gdxz+eDfQ9LI6CngSX4BvAm8D7xXVRNJxoAHgY3AL4A7qurYYMYcfbn3jVX5UOO6Z6BvIWkVLecQys1V9emqmuiW7wYOVNV1wIFuWZK0Ss7lGPjtwFT3eArYeu7jSJJ61WvACjXJIeS7OjWra+qI93jV4D1i70wyY4ks0lm5+fnz3FcSdJJvf4Tc0tVvZzkN4HHkvz81CerqpIsegC3qnYDuwEmJiYGe5BXki4gPe2BV9XL3fejwA+AG4FXk2wA6L4fHdSQkqTTLRnwJB9J8rGTj4HfB54BHgG2d5ttBYOakhJ0ul6OYSyHvhBkpPb0tVTDJz4CHkkwCLwF3DG5MSdJCSwa8ql4EPrXI+v8Bbh3EUJKkpXkpvSQ1yoBLUqMMuCQ1yoBLUqMMuCQ1yoBLUqMMuCQ1yoBLUqMMuCQ1yoBLUqMMuCQ1yoBLUqMMuCQ1yoBLUqMMuCQ1yoBLUqMMuCQ1yoBLUqMMuCQ1yoBLUqMMuCQ1yoBLUqMuGvYAktqVZNmvqaoBTHJhMuCSVuxMMU5iqFeBh1AkqVEGXJIaZcAlqVEGXJIa1XPAk6xJ8lSSR7vla5M8keSFJA8muXhwY0qSFlrOHvhdwNwpy38HfKOqfhs4Bkz2czBJ0tn1FPAkVwNCHy7Ww5wCBwt8kUsHUQA0qSFtfrHvjfA38JF+3BvA61X1Xrd8GLhqsRcm2ZFkNsnsPz8OQ0rSfqVJQOe5I+Ao1V1aCVvUFW7q2qiqibGx8dX8iMkSYvo5UrMm4ATvJ54FLgMuCbwBVJLur2wq8GXh7cmBeGlVyWvBzr1q0b6M+XtLqW3AOvqr+uqquraiPwJ8CPquqLwAzwhW6z7cDegU15AaiqZX8t93WvvfbakH9LSf10LueBxXwlSQvcOKY+J7+jCRJ6sWybmZVVT8Gftw9fhG4sf8jSZJ64ZWYktQoAy5JjTLgktQoAy5JjTLgktQoAy5JjTLgktQoAy5JjTLgktQoAy5JjTLgktQoAy5JjTLgktQoAy5JjTLgktQoAy5JjTLgktQoAy7prMbGxkiyrC9gWduPjY0N+bds07I+Uk3ShefYsWMffIj2oJyMvpbHPXBJapQBl6RGGXBJapQBl6RGGXBJapQBl6RGGXBJapQBl6RGGXBJatSSAU9yaZJSLvSZ5Ncm+3tokTyR5IcmDSS4eLiSpJN6uZT+HeCWqnoryVrgYJL9wFeAb1TVd5P8AzAJfGuAs0oagvrqZXDP5YNDy3bkgGvEzdBeKtbXNt9FXAL8Kfd+ingHgy4NHJy7xurci+UumegbzGSejoGnmRNkqeBo8BjwH8Br1fVe90mh4GrzvDaHUlmk8zOz83Y2ZJEj0GvKrer6pPA1cDNwKf6PUNqmp3VU1U1cT4+PgKx5QkLbSss1Cq6nVgBvgMcEWSk4dgrgZe7vNskqSz6OUslPEkV3SPfx34HDDHiZBodtsO7B3UENKkk7Xy1koG4CpJGs4EfyHqurRJM8B303yt8BTwJ4BzilJWqCXs1D+A7hhkfUvcuJ4uCRpCLwSU5IaZcAlqVEGXJIaZcAlqVEGXJIaZcAlqVEGXJIa1cuFPJIucEkG+vPXrVs30J8qgy4pLNaya1kkwz8FrTyEIokNcuAS1KjDLgkNcqAS1KjDLgkNcqAS1KjDLgkNcqAS1KjDLgkNcqAS1KjDLgkNcp7oZznlrqJ0Jme9z4U0ugz4Oc5QyzpTDyEIkmNMuCS1CgDLkmNMuCS1CgDLkmNMuCS1KglA57k40lmkjyX5Nkkd3Xrx5I8luT57rufSipJq6iXPfD3gL+oqk8Cvwv8eZJPAncDB6rqOuBAtyxJWiVLBryqjlTVk93jN4E54CrgdmCq22wK2DqoISVJp1vWMfAkG4EbgCeA9VV1pHvqFWB9XyeTJJ1VzwFP8lHge8CXq+qNU5+rE9d7L3rNd5IdSWaTzM7Pz5TsJKkX+kp4EnWciLeD1TV97vVrybZ0D2ATi62GurandVTVTVxPj4eD9mliTR21koAfYAc1X19VOeegTY3j3eDuzt3iSpDPp5W6ENwFfAv4zydPdur8BvgY8lGQSeAm4YzAjSpIWs2TAq+ogcKabUta33EkSb3ySkxJapQBl6RGGXBJapQfqSZpxc72ma1+XuvgGXBJK2aMh8tDKJLUKAMuSY0y4JLUKAMuSY0y4JLUKAMuSY0y4JLUKAMuSY0y4JLUKAMuSY0y4JLUKAMuSY0y4JLUKAMuSY0y4JLUKAMuSY0y4JLUKAMuSY0y4JLUKAMuSY0y4JLUKAMuSY0y4JLUKAMuSY1aMuBJvpPkaJJnTlk3luSxJM9339cNdkxJ0kK97IHEAHC9bdDRyoquuAA92yJGkVLRnwqvoJ8NqC1bcDU93jKWBrn+eS1KDp6Wk2b97MmjVr2Lx5M9PT08MeaaRdtMLXra+qI93jV4D1Z9owyQ5gB8A111yzwreTdL6bnp5m165d7Nmzhy1btnDw4EEmJycB2LZt25CnG02pqqU3SjYCj1bV5m759aq64pTnj1XVksfBJyYmanZ2duXTSjpvbd68mfvvv5+bb775g3UzMzPs3LmTZ5555iyv1FKSHKqqiYXrV3oWyqtJNnQeANw9FyGk9S+ubk5tmzZ8qF1W7ZsYW5ubkgTjb6VBvwRYHv3eDuwtzjSGrVpk2bOHjw4IfWHTx4kE2bNg1potHXy2mE08BPgeuTHE4yCXwN+FyS54Hf65YlXcB27drF5OQkMzMzHD9+nJmZGSYnJ9m1a9ewRxtZS4Ts6rO9N+HWs8i6SGbdu2jccff5zbbruNd955h0suuYQ777zTf2AOkFdiSuqL6elp9u3bx79+3n33XfZv38+bt81TCAerpLJR+8SwUaXR5FsrgnOksFAMuqSWrFnD22+zdq1az9Ydz4cS699FLef9IU7Wvn6fRihJH+JZKKvPgEvqC89CWX0rvZRekj7k5NkmO3fuZG5ujk2bNnHfffd5FsoAeQxcks5zHgOXpBFjwCWpUQZckhplwCWpUQZckhq1qmehJJkHXlq1Nxx9VwKHPYQ0iL82+yv36qq8YUrVzXg6q8ks4udWiQNm3+bq8NDKJLUKAMuSY0y4G3bPewBpDPwb3MVeAxckhrlHrgkNcqAS1KjDHhjknwnydEkfkaVzitJPp5kJslzSZ5NctewZxp1HgNvTJLPAm8B1xVm4c9j3RSkg3Ahqp6MsnHgEPA1qp6bsijjSz3wBtTVT8BXhv2HNJCVXWkqp7sHr8JzAFXDXeq0WbAJfVdko3ADcATw51ktBlwSX2V5KPA94AvV9Ubw55nlBlwSX2TZC0n4v1AVX12POMOgMuqS+SBNgDzFXV14c9z4XAgDcmyTTwU+D6JIeTTA57JqlzEAl4JYkT3dfnx2UKPM0wglqVHugUtSowy4JDXKgEtSowy4JDXKgEtSowy4JDXKgEtSo4feUeQ28xiw9wAAAAASUVORK5CYII=n
+          },
+          metadata {
+            needs_background light
+          }
+        }
+      ]
+    },
+    {
+      cell_type markdown,
+      source [
+        h3c) Trực quan bằng scatter plot dựa trên hai biến nàyh3
+      ],
+      metadata {
+        id OuoILHnInrlG
+      }
+    },
+    {
+      cell_type code,
+      source [
+        plt.scatter(age_list, fat_list, c=fat_list, cmap='Spectral')n,
+        plt.colorbar()n,
+        plt.xlabel('Age')n,
+        plt.ylabel('%fat')n,
+        plt.show()
+      ],
+      metadata {
+        colab {
+          base_uri httpslocalhost8080,
+          height 279
+        },
+        id SzEixevXnrTz,
+        outputId dbce5835-c154-44bc-9ce0-88147e5e0a04
+      },
+      execution_count 97,
+      outputs [
+        {
+          output_type display_data,
+          data {
+            textplain [
+              Figure size 432x288 with 2 Axes
+            ],
+            imagepng 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
+          },
+          metadata {
+            needs_background light
+          }
+        }
+      ]
+    },
+    {
+      cell_type markdown,
+      source [
+        h1Bài 5h1n,
+        h3Chuẩn hóa tập dữ liệu để làm cho mỗi điểm dữ liệu rơi vào khoảng [0, 1]h3
+      ],
+      metadata {
+        id SPabTk0F86yM
+      }
+    },
+    {
+      cell_type code,
+      source [
+        data = np.array([[1.5, 1.7], [2.0, 1.9], [1.6, 1.8], [1.2, 1.5], [1.5, 1.0]])n,
+        min_max_norm = (data - np.min(data))  (np.max(data) - np.min(data))n,
+        print(min_max_norm)
+      ],
+      metadata {
+        colab {
+          base_uri httpslocalhost8080
+        },
+        id nJdAsWzE86fE,
+        outputId 51d4a82c-bfd2-4445-fa9c-ddc2585a10d1
+      },
+      execution_count 98,
+      outputs [
+        {
+          output_type stream,
+          name stdout,
+          text [
+            [[0.5 0.7]n,
+             [1.  0.9]n,
+             [0.6 0.8]n,
+             [0.2 0.5]n,
+             [0.5 0. ]]n
+          ]
+        }
+      ]
+    },
+    {
+      cell_type markdown,
+      source [
+        h1Bài 6h1n,
+        h3b) Chuẩn hóa z-scoreh3
+      ],
+      metadata {
+        id X4BX3UNo_Zuy
+      }
+    },
+    {
+      cell_type code,
+      source [
+        import scipy.stats as statsn,
+        n,
+        data1 = np.array([200, 300, 400, 600, 1000])n,
+        stats.zscore(data1)
+      ],
+      metadata {
+        colab {
+          base_uri httpslocalhost8080
+        },
+        id 8Aliik709-dB,
+        outputId 78edc235-11bf-4215-e579-485ec517ba13
+      },
+      execution_count 99,
+      outputs [
+        {
+          output_type execute_result,
+          data {
+            textplain [
+              array([-1.06066017, -0.70710678, -0.35355339,  0.35355339,  1.76776695])
+            ]
+          },
+          metadata {},
+          execution_count 99
+        }
+      ]
+    },
+    {
+      cell_type markdown,
+      source [
+        h3c) Chuẩn hóa điểm z bằng cách sử dụng độ lệch tuyệt đối trung bình thay vì độ lệch chuẩnh3
+      ],
+      metadata {
+        id OS9-uFjzv5D1
+      }
+    },
+    {
+      cell_type code,
+      source [
+        def modified_z(data)n,
+            res = []n,
+            med_val = np.median(data)n,
+            MAD = np.median((np.abs(data - med_val)))n,
+            mod_z = (0.6745  (data - med_val))  MADn,
+            return mod_zn,
+        modified_z([data1])
+      ],
+      metadata {
+        colab {
+          base_uri httpslocalhost8080
+        },
+        id LCsJEhw0AEAb,
+        outputId 57b7391c-b0a1-4e80-9813-e7d09696c085
+      },
+      execution_count 100,
+      outputs [
+        {
+          output_type execute_result,
+          data {
+            textplain [
+              array([[-0.6745 , -0.33725,  0.     ,  0.6745 ,  2.0235 ]])
+            ]
+          },
+          metadata {},
+          execution_count 100
+        }
+      ]
+    },
+    {
+      cell_type markdown,
+      source [
+        h1Bài 7h1n,
+        h3a) Hãy dùng các kỹ thuật khác nhau để điền các giá trị thiếu trong bảng sauh3
+      ],
+      metadata {
+        id x91y4JyPyNgn
+      }
+    },
+    {
+      cell_type code,
+      source [
+        import pandas as pdn,
+        n,
+        list_nation = ['India', 'Russia', 'Germany', 'Russia', 'Germany', 'India', 'Russia', 'India',n,
+                       'Germany', 'India', 'Germany', 'India', 'Russia', 'Germany', 'India']n,
+        list_purchase = ['No', 'Yes', 'No', 'No', 'Yes', 'Yes', 'No', 'Yes', 'No', 'Yes', 'No', 'Yes', 'No', 'Yes', 'No']n,
+        list_age = [25, np.nan, 50, 35, 40, 35, np.nan, 48, 50, 37, 21, np.nan, 63, 26, 45]n,
+        list_salary = [35000, 40000, 54000, np.nan, 60000, 58000, 52000, np.nan, 83000, np.nan, 24000, 60000, 70000, 36000, 40000]n,
+        df = pd.DataFrame(list(zip(list_nation, list_purchase, list_age, list_salary)), columns =['nation', 'purchased_item', 'age', 'salary'])n,
+        df.head()
+      ],
+      metadata {
+        colab {
+          base_uri httpslocalhost8080,
+          height 206
+        },
+        id 3oEif8meyMxM,
+        outputId 8267480e-cc11-43cf-ff25-571d297dcc01
+      },
+      execution_count 102,
+      outputs [
+        {
+          output_type execute_result,
+          data {
+            textplain [
+                  nation purchased_item   age   salaryn,
+              0    India             No  25.0  35000.0n,
+              1   Russia            Yes   NaN  40000.0n,
+              2  Germany             No  50.0  54000.0n,
+              3   Russia             No  35.0      NaNn,
+              4  Germany            Yes  40.0  60000.0
+            ],
+            texthtml [
+              n,
+                div id=df-ba05fd2b-2531-44c8-9a3b-d221e06151a1n,
+                  div class=colab-df-containern,
+                    divn,
+              style scopedn,
+                  .dataframe tbody tr thonly-of-type {n,
+                      vertical-align middle;n,
+                  }n,
+              n,
+                  .dataframe tbody tr th {n,
+                      vertical-align top;n,
+                  }n,
+              n,
+                  .dataframe thead th {n,
+                      text-align right;n,
+                  }n,
+              stylen,
+              table border=1 class=dataframen,
+                theadn,
+                  tr style=text-align right;n,
+                    ththn,
+                    thnationthn,
+                    thpurchased_itemthn,
+                    thagethn,
+                    thsalarythn,
+                  trn,
+                theadn,
+                tbodyn,
+                  trn,
+                    th0thn,
+                    tdIndiatdn,
+                    tdNotdn,
+                    td25.0tdn,
+                    td35000.0tdn,
+                  trn,
+                  trn,
+                    th1thn,
+                    tdRussiatdn,
+                    tdYestdn,
+                    tdNaNtdn,
+                    td40000.0tdn,
+                  trn,
+                  trn,
+                    th2thn,
+                    tdGermanytdn,
+                    tdNotdn,
+                    td50.0tdn,
+                    td54000.0tdn,
+                  trn,
+                  trn,
+                    th3thn,
+                    tdRussiatdn,
+                    tdNotdn,
+                    td35.0tdn,
+                    tdNaNtdn,
+                  trn,
+                  trn,
+                    th4thn,
+                    tdGermanytdn,
+                    tdYestdn,
+                    td40.0tdn,
+                    td60000.0tdn,
+                  trn,
+                tbodyn,
+              tablen,
+              divn,
+                    button class=colab-df-convert onclick=convertToInteractive('df-ba05fd2b-2531-44c8-9a3b-d221e06151a1')n,
+                            title=Convert this dataframe to an interactive table.n,
+                            style=displaynone;n,
+                      n,
+                svg xmlns=httpwww.w3.org2000svg height=24pxviewBox=0 0 24 24n,
+                     width=24pxn,
+                  path d=M0 0h24v24H0V0z fill=nonen,
+                  path d=M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zpath d=M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20zn,
+                svgn,
+                    buttonn,
+                    n,
+                stylen,
+                  .colab-df-container {n,
+                    displayflex;n,
+                    flex-wrapwrap;n,
+                    gap 12px;n,
+                  }n,
+              n,
+                  .colab-df-convert {n,
+                    background-color #E8F0FE;n,
+                    border none;n,
+                    border-radius 50%;n,
+                    cursor pointer;n,
+                    display none;n,
+                    fill #1967D2;n,
+                    height 32px;n,
+                    padding 0 0 0 0;n,
+                    width 32px;n,
+                  }n,
+              n,
+                  .colab-df-converthover {n,
+                    background-color #E2EBFA;n,
+                    box-shadow 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);n,
+                    fill #174EA6;n,
+                  }n,
+              n,
+                  [theme=dark] .colab-df-convert {n,
+                    background-color #3B4455;n,
+                    fill #D2E3FC;n,
+                  }n,
+              n,
+                  [theme=dark] .colab-df-converthover {n,
+                    background-color #434B5C;n,
+                    box-shadow 0px 1px 3px 1px rgba(0, 0, 0, 0.15);n,
+                    filter drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));n,
+                    fill #FFFFFF;n,
+                  }n,
+                stylen,
+              n,
+                    scriptn,
+                      const buttonEl =n,
+                        document.querySelector('#df-ba05fd2b-2531-44c8-9a3b-d221e06151a1 button.colab-df-convert');n,
+                      buttonEl.style.display =n,
+                        google.colab.kernel.accessAllowed  'block'  'none';n,
+              n,
+                      async function convertToInteractive(key) {n,
+                        const element = document.querySelector('#df-ba05fd2b-2531-44c8-9a3b-d221e06151a1');n,
+                        const dataTable =n,
+                          await google.colab.kernel.invokeFunction('convertToInteractive',n,
+                                                                   [key], {});n,
+                        if (!dataTable) return;n,
+              n,
+                        const docLinkHtml = 'Like what you see Visit the ' +n,
+                          'a target=_blank href=httpscolab.research.google.comnotebooksdata_table.ipynbdata table notebooka'n,
+                          + ' to learn more about interactive tables.';n,
+                        element.innerHTML = '';n,
+                        dataTable['output_type'] = 'display_data';n,
+                        await google.colab.output.renderOutput(dataTable, element);n,
+                        const docLink = document.createElement('div');n,
+                        docLink.innerHTML = docLinkHtml;n,
+                        element.appendChild(docLink);n,
+                      }n,
+                    scriptn,
+                  divn,
+                divn,
+                
+            ]
+          },
+          metadata {},
+          execution_count 102
+        }
+      ]
+    },
+    {
+      cell_type code,
+      source [
+        df1 = df.copy()n,
+        df1['age'] = df1['age'].fillna(0)n,
+        df1['salary'] = df1['salary'].fillna(0)
+      ],
+      metadata {
+        id 8Gj2Jrn5FVsR
+      },
+      execution_count 104,
+      outputs []
+    },
+    {
+      cell_type code,
+      source [
+        df2 = df.copy()n,
+        df2['age'].fillna(value=df2['age'].mean(), inplace=True)n,
+        df2['salary'].fillna(value=df2['salary'].mean(), inplace=True)
+      ],
+      metadata {
+        id A-8daheEFv3S
+      },
+      execution_count 108,
+      outputs []
+    },
+    {
+      cell_type code,
+      source [
+        df3 = df.copy()n,
+        df3['age'].fillna(value=df3['age'].median(), inplace=True)n,
+        df3['salary'].fillna(value=df3['salary'].median(), inplace=True)
+      ],
+      metadata {
+        id w5ZeCStRGHEP
+      },
+      execution_count 110,
+      outputs []
+    },
+    {
+      cell_type code,
+      source [
+        df3 = df.copy()n,
+        df3['age'].fillna(method=ffill, inplace=True)n,
+        df3['salary'].fillna(method=ffill, inplace=True)
+      ],
+      metadata {
+        id BrXMZmBOIUsk
+      },
+      execution_count 114,
+      outputs []
+    },
+    {
+      cell_type code,
+      source [
+        df4 = df.copy()n,
+        df4['age'].fillna(method=bfill, inplace=True)n,
+        df4['salary'].fillna(method=bfill, inplace=True)
+      ],
+      metadata {
+        id WhfYzlEyIrLx
+      },
+      execution_count 116,
+      outputs []
+    },
+    {
+      cell_type markdown,
+      source [
+        h3b) Làm cách nào để mô hình có thể xử lý dữ liệu trên một cách nhanh hơnh3n,
+        Cột nation chuyển 'India', 'Germany' và 'Russia' về nhãn 0, 1, 2 và chuyển cột purchased_item về nhãn 0, 1 tương ứng cho 'Yes' hoặc 'No'. Với cột age và salary để tránh sự chênh lệch dữ liệu thì sẽ được chuẩn hóa.
+      ],
+      metadata {
+        id 1hNH4BSSJQLf
+      }
+    },
+    {
+      cell_type code,
+      source [
+        from sklearn.preprocessing import StandardScalern,
+        n,
+        df5 = df.copy()n,
+        df5['nation'] = pd.factorize(df5['nation'])[0]n,
+        df5['purchased_item'] = pd.factorize(df5['purchased_item'])[0]n,
+        sc = StandardScaler()n,
+        df5['age'].fillna(value=df5['age'].mean(), inplace=True)n,
+        df5['salary'].fillna(value=df5['salary'].mean(), inplace=True)n,
+        df5[['age', 'salary']] = sc.fit_transform(df5[['age', 'salary']])
+      ],
+      metadata {
+        id Gu8YD5JCJP4t
+      },
+      execution_count 129,
+      outputs []
+    },
+    {
+      cell_type markdown,
+      source [
+        h3c) Nếu age và salary là hai đặc trưng được sử dụng cho mô hình học máy nào đó ví dụ như K-NN với hàm tính khoảng cách giữa các mẫu giữa là Euclid, bạn sẽ cần thực hiện điều gì trướch3n,
+        Đầu tiên ta điền dữ liệu thiếu vào các cột bị trống. Tiếp theo, ta tính khoảng cách Euclidean của cột age và salary so với dữ liệu test. Ví dụ, đưa ra tuổi là 20 và lương là 30000. Lấy cột đầu tiên trong dữ liệu với tuổi là 25 và lương là 35000, ta tính khoảng cách Euclidean với dữ liệu test theo công thức sqrt((25-20)^2 + (35000-30000)^2). Các hàng còn lại cũng tính tương tự với dữ liệu test. Khi tính xong ta sẽ sắp xếp lại cột khoảng cách từ lớn đến bé và từ đó sẽ đưa ra 1 giá trị k để biết được với giá trị tuổi là a và giá trị lương là b thì liệu người đó sẽ mua item đó hay không. Ví dụ nếu k = 3 và có 2 người mua item nhưng 1 người không mua item thì khả năng với tuổi là 20 và lương là 30000 thì người này sẽ có khả năng cao là mua item.
+      ],
+      metadata {
+        id oDHt61UKM8H6
+      }
+    }
+  ]
+}
