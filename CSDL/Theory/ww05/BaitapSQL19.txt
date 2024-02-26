@@ -1,0 +1,36 @@
+select masp, tensp, giatien, donvitinh
+from SanPham
+where giatien > 100
+
+select *
+from SanPham
+join LoaiSanPham on SanPham.maloai = LoaiSanPham.maloai
+where LoaiSanPham.tenloai = N'Đồ dùng'
+
+select tensp, giatien
+from SanPham
+where tensp like N'%Bàn chải đánh răng%'
+
+select SanPham.tensp, LoaiSanPham.tenloai
+from SanPham
+join LoaiSanPham on SanPham.maloai = LoaiSanPham.maloai
+
+select SanPham.tensp, LoaiSanPham.tenloai
+from SanPham
+join LoaiSanPham on SanPham.maloai = LoaiSanPham.maloai
+where SanPham.soluongton > 50
+
+select *
+from SanPham
+where donvitinh = N'túi'
+
+select LoaiSanPham.tenloai
+from SanPham
+join LoaiSanPham on SanPham.maloai = LoaiSanPham.maloai
+where SanPham.tensp = N'Bột giặt Omo'
+
+select tensp, min(giatien)
+from SanPham
+
+select tensp, max(giatien)
+from SanPham
