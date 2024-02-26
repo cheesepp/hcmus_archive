@@ -1,0 +1,208 @@
+#include "iostream"
+#include "fstream"
+#include "vector"
+#include "string"
+#include "sstream"
+using namespace std;
+#define  m pow(10,9)+9
+#define p 31
+struct Company
+{
+    string name;
+    string tax_code;
+    string address;
+};
+struct NODE
+{
+	Company data;
+	NODE* next;
+};
+struct LIST
+{
+	NODE* head;
+	NODE* tail;
+};
+//Read the companies's information from a given file :
+vector<Company> ReadCompanyList(string file_name)
+{
+	vector<Company> CompanyList;//create vector to storage Company list
+	ifstream fin(file_name, ios::in);
+	if (!fin)//if cannot open file, return
+	{
+		cout << endl << "Cannot Open File To read";
+		return CompanyList;
+	}
+	string line;
+	getline(fin, line);//read the header line of file
+	while (!fin.eof())
+	{
+		getline(fin, line);//read a line in file
+		stringstream ss(line);//use string stream to use getline function
+		string buffer;//storage the name, tax code and address in a line
+		Company ACompany;
+
+		getline(ss, buffer, '|');//read the name of a comapny
+		ACompany.name = buffer;
+		getline(ss, buffer, '|');//read the tax code of a company
+		ACompany.tax_code = buffer;
+		getline(ss, buffer, '|');//read the address of a company
+		ACompany.address = buffer;
+
+		CompanyList.push_back(ACompany);
+
+
+	}
+	fin.close();
+	return CompanyList;
+}
+//print all companies in list
+void PrintCompanyList(vector<Company> CompanyList)
+{
+	for (int i = 0; i < CompanyList.size(); i++)
+	{
+		cout << endl << "The " << i + 1 << " Company: ";
+		cout << endl << CompanyList[i].name << " - " << CompanyList[i].tax_code << " - " << CompanyList[i].address;
+	}
+}
+//modular formula: (a * b) % m = (a % m * b % m) % m 
+long long ModularArithmetic(int n)
+{
+	long long res = 1;
+	long long modulo = ((long long)(p) % (long long)(m));
+	for (int i = 0; i < n; i++)
+	{
+		res = (res % (long long)(m)) * modulo;
+	}
+	return res; //return pow(p,n)%m
+}
+//hash function
+long long HashString(string company_name)
+{
+	long long index = 0;
+	if (company_name.length() <= 20)//company name length is less or equal 20
+	{
+		for (int i = 0; i < company_name.length(); i++)
+		{
+			index = index + ((int)company_name[i] % (long long)(m)) * ModularArithmetic(i);//((long long)pow(p, i) % (long long)(m));
+		}
+	}
+	else
+	{
+		for (int i = company_name.length(); i > company_name.length() - 20; i--)//company name length is greater than 20
+		{
+			index = index + ((int)company_name[i] % (long long)(m)) * ModularArithmetic(i); //((long long)pow(p, i) % (long long)(m));
+		}
+	}
+	return index % (long long)(m);
+}
+
+LIST* initializeLinkedList()
+{
+	LIST* list = new LIST();
+	list->head = nullptr;
+	list->tail = nullptr;
+	return list;
+}
+NODE* createNode(Company val)
+{
+	NODE* ptr = new NODE();
+	ptr->data = val;
+	ptr->next = nullptr;
+	return ptr;
+}
+void InsertHead(LIST*& list, Company data)
+{
+	if (list == nullptr||list->head==nullptr)
+	{
+		
+		NODE* ptr = createNode(data);
+		list->head = ptr;
+		list->tail = ptr;
+		return;
+	}
+	else
+	{
+		NODE* ptr = createNode(data);
+		ptr->next = list->head;
+		list->head = ptr;
+		return;
+	}
+}
+void InsertTail(LIST*& list, Company data)
+{
+	if (list == nullptr || list->head==nullptr)
+	{
+		
+		NODE* ptr = createNode(data);
+		list->head = ptr;
+		list->tail = ptr;
+		return;
+	}
+	else
+	{
+		NODE* ptr = createNode(data);
+		list->tail->next = ptr;
+		list->tail = ptr;
+		return;
+	}
+}
+//initialize company list with default value
+LIST** InitializeCompanyList()
+{
+	LIST** CompanyList = new LIST*[2000];
+	Company ACompany;
+
+	//assign the default value to the string
+	ACompany.name = "null";
+	ACompany.tax_code = "null";
+	ACompany.address = "null";
+
+	for (int i = 0; i < 2000; i++)
+	{
+		LIST* list = initializeLinkedList();
+		CompanyList[i] = list;
+	}
+	return CompanyList;
+}
+LIST** CreateHashTable(vector<Company> list_company)
+{
+	LIST** CompanyList = InitializeCompanyList();
+
+	for (int i = 0; i < list_company.size(); i++)
+	{
+		long long index = HashString(list_company[i].name);
+	
+		InsertTail(CompanyList[index % 2000], list_company[i]);
+		
+	}
+
+	return CompanyList;
+}
+void printLinkedList(LIST* list,int& count)
+{
+	NODE* ptr = list->head;
+	while (ptr != nullptr)
+	{
+		count++;
+		cout << endl << "name: " << ptr->data.name << " - tax: " << ptr->data.tax_code << " - addr: " << ptr->data.address<<" - index: "<<count;
+		ptr = ptr->next;
+	}
+}
+void printHashTable(LIST** list)
+{
+	int count = 0;
+	for (int i = 0; i < 2000; i++)
+	{
+		
+		printLinkedList(list[i], count);
+	}
+	cout << endl << "number of company: " << count;
+}
+int main()
+{
+	vector<Company> vec = ReadCompanyList("data.txt");
+	//PrintCompanyList(vec);
+	cout << endl << "==================================" << endl;
+	LIST** list = CreateHashTable(vec);
+	printHashTable(list);
+}
